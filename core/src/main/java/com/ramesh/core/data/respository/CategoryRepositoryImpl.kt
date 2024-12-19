@@ -6,6 +6,7 @@ import com.ramesh.core.data.network.ApiServices
 import com.ramesh.core.domain.repository.CategoryRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -25,7 +26,7 @@ class CategoryRepositoryImpl @Inject constructor(private val apiService: ApiServ
     }
 
     override suspend fun searchCategoryApiCall(query: String): Flow<ProductResponse> {
-        TODO("Not yet implemented")
+        return flowOf(apiService.searchProduct(query))
     }
 
 

@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class ProductResponse(
     @SerializedName("limit")
-    val limit: Int,
+    val limit: Int? = null,
     @SerializedName("products")
-    val products: List<Product>,
+    val products: MutableList<Product>? = null,
     @SerializedName("skip")
-    val skip: Int,
+    val skip: Int? = null,
     @SerializedName("total")
-    val total: Int
+    val total: Int? = null
 )

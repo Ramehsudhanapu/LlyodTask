@@ -17,12 +17,15 @@ android {
         targetSdk = Versions.target_sdk
         versionCode = Versions.version_code
         versionName = Versions.version_name
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
+
+
+
     }
+
 
     buildTypes {
         release {
@@ -86,7 +89,7 @@ dependencies {
     kapt(LyodsDependencies.hilt_compose_compiler)
 
 
-    }
+}
 
 
 

@@ -1,5 +1,7 @@
 package com.ramesh.assessment.home
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -26,8 +28,8 @@ class HomeViewModel @Inject constructor(
         MutableStateFlow(UiState.Loading)
 
     val UiStateCategory: StateFlow<UiState<ProductResponse>> = _UiStateCategory
-    private val _query = MutableStateFlow("")
-    private val query: StateFlow<String> get() = _query
+    private val _query = mutableStateOf("")
+    val query: State<String> get() = _query
 
     // get the category data from the api
     fun getCategoryApiCall() {

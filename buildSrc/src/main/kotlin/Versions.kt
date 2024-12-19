@@ -31,5 +31,7 @@ object Versions {
 
     const val compose_ui_version = "1.3.1"
     const val accompanist_systemuicontroller_version = "0.28.0"
+    const val accompanist_pager_version = "0.28.0"
+
 
 }

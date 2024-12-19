@@ -61,11 +61,13 @@ fun HomeScreen(
                     }
 
                     is UiState.Success -> {
-                        HomeContent(
-                            modifier = modifier,
-                            listProduct = (UiStateCategory as UiState.Success<ProductResponse>).data.products,
-                            navigateToDetail = navigateToDetail,
-                        )
+                        (UiStateCategory as UiState.Success<ProductResponse>).data.products?.let { it1 ->
+                            HomeContent(
+                                modifier = modifier,
+                                listProduct = it1,
+                                navigateToDetail = navigateToDetail,
+                            )
+                        }
                     }
 
                     is UiState.Error -> {

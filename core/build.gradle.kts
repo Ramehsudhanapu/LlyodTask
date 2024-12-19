@@ -17,8 +17,12 @@ android {
         minSdk = Versions.min_sdk
         targetSdk = Versions.target_sdk
 
+        buildConfigField("String", "BASE_URL", "https://dummyjson.com/")
+
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
     }
 
     buildTypes {
@@ -57,7 +61,7 @@ android {
 
 
     dependencies {
-// DEFAULT DEPENDENCIES
+        // DEFAULT DEPENDENCIES
         api(LyodsDependencies.core_ktx)
         api(LyodsDependencies.lifecycle_ktx)
 
@@ -104,6 +108,10 @@ android {
             exclude("androidx.lifecycle", "lifecycle-viewmodel-ktx")
         }
         kapt(LyodsDependencies.hilt_compose_compiler)
+
+        // PAGER
+        api(LyodsDependencies.accompanist_pager)
+        api(LyodsDependencies.accompanist_pager_indicator)
 
 
 

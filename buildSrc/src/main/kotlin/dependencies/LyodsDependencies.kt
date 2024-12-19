@@ -50,6 +50,9 @@ object LyodsDependencies {
         "com.google.dagger:hilt-android-compiler:${Versions.hilt_android}"
     const val hilt_compose = "androidx.hilt:hilt-navigation-compose:${Versions.hilt_compose}"
     const val hilt_compose_compiler = "androidx.hilt:hilt-compiler:${Versions.hilt_compose}"
+    // PAGER
+    const val accompanist_pager = "com.google.accompanist:accompanist-pager:${Versions.accompanist_pager_version}"
+    const val accompanist_pager_indicator = "com.google.accompanist:accompanist-pager-indicators:${Versions.accompanist_pager_version}"
 
 
     // SYSTEMUI-CONTROLLER
