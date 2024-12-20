@@ -1,7 +1,9 @@
 package com.ramesh.assessment.component
+
 import android.graphics.Bitmap
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,19 +21,18 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.ramesh.core.R
-import com.ramesh.core.data.model.Product
+import com.ramesh.core.data.model.ProductResponse
 import com.ramesh.core.ui.componets.particle.theme.Gray200
 import com.ramesh.core.util.UtilFunctions.fromDollarToRupiah
 
 @Composable
 fun ProductItem(
     modifier: Modifier = Modifier,
-    product: Product = Product()
+    product: ProductResponse
 ) {
     Card(
         shape = RoundedCornerShape(8.dp),
@@ -40,14 +41,15 @@ fun ProductItem(
         ),
         modifier = modifier
             .padding(8.dp)
-            .defaultMinSize()
+            .fillMaxWidth()
+            .defaultMinSize(minHeight = 100.dp) // Add a minimum height
     ) {
         Column(
-            modifier = modifier.defaultMinSize()
+            modifier = Modifier.fillMaxWidth()
         ) {
             SubcomposeAsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(product.thumbnail)
+                    .data(product.image)
                     .placeholder(R.drawable.ic_launcher)
                     .crossfade(true)
                     .size(150, 150)
@@ -61,11 +63,15 @@ fun ProductItem(
                 },
                 contentDescription = stringResource(R.string.product_thumbnail),
                 contentScale = ContentScale.Crop,
-                modifier = modifier.height(180.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(180.dp)
             )
             Divider(color = Gray200, thickness = 1.dp)
             Column(
-                modifier = modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
             ) {
                 Text(
                     text = product.title ?: "",
@@ -77,7 +83,7 @@ fun ProductItem(
                     color = Color.Black
                 )
                 Text(
-                    text = product.price.fromDollarToRupiah(),
+                    text = product.price?.fromDollarToRupiah() ?: "",
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     style = MaterialTheme.typography.bodySmall,
@@ -88,15 +94,3 @@ fun ProductItem(
     }
 }
 
-@Composable
-@Preview(showBackground = true)
-fun ProductItemPreview() {
-    ProductItem(
-        product = Product(
-            id = 1,
-            title = "Product Title",
-            price = 100000.0,
-            thumbnail = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"),
-        modifier = Modifier
-    )
-}

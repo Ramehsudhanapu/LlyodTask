@@ -10,13 +10,11 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.ramesh.assessment.categories.CategoryListScreen
 import com.ramesh.assessment.detail.DetailScreen
 import com.ramesh.assessment.home.HomeScreen
-
 import com.ramesh.assessment.navigation.model.BottomBarScreen
 import com.ramesh.assessment.navigation.model.GeneralScreen
-import com.ramesh.assessment.search.SearchScreen
-
 
 @Composable
 fun MainNavHost(
@@ -29,12 +27,10 @@ fun MainNavHost(
         modifier = Modifier.padding(innerPadding)
     ) {
         composable(BottomBarScreen.Home.route) {
-            HomeScreen(
-                navigateToDetail = { productId ->
-                    navController.navigate(GeneralScreen.DetailProduct.createRoute(productId))
-                },
-                navigateToSearch = {
-                    navController.navigate(GeneralScreen.SearchProduct.route)
+            CategoryListScreen(
+                navController = navController,
+                navigateToHome = { categoryName ->
+                    navController.navigate(GeneralScreen.HomeScreen.createRoute(categoryName))
                 }
             )
         }
@@ -43,11 +39,23 @@ fun MainNavHost(
         }
         composable(BottomBarScreen.Profile.route) {
             Toast.makeText(navController.context, "Profile", Toast.LENGTH_SHORT).show()
-
+        }
+        composable(
+            route = GeneralScreen.HomeScreen.route,
+            arguments = listOf(navArgument("categoryName") { type = NavType.StringType })
+        ) {
+            val categoryName = it.arguments?.getString("categoryName") ?: ""
+            HomeScreen(
+                categoryName = categoryName,
+                navController = navController,
+                navigateToDetail = { productId ->
+                    navController.navigate(GeneralScreen.DetailProduct.createRoute(productId))
+                }
+            )
         }
         composable(
             route = GeneralScreen.DetailProduct.route,
-            arguments = listOf(navArgument("productId") { type = NavType.IntType }),
+            arguments = listOf(navArgument("productId") { type = NavType.IntType })
         ) {
             val id = it.arguments?.getInt("productId") ?: -1
             DetailScreen(
@@ -55,18 +63,6 @@ fun MainNavHost(
                 navigateBack = {
                     navController.navigateUp()
                 },
-            )
-        }
-        composable(
-            route = GeneralScreen.SearchProduct.route,
-        ) {
-            SearchScreen(
-                navigateToDetail = { productId ->
-                    navController.navigate(GeneralScreen.DetailProduct.createRoute(productId))
-                },
-                navigateBack = {
-                    navController.navigateUp()
-                }
             )
         }
     }

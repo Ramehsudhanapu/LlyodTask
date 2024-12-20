@@ -14,9 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ramesh.assessment.component.EmptyProduct
 import com.ramesh.assessment.component.ProductItem
-import com.ramesh.core.data.model.Product
-
-
+import com.ramesh.core.data.model.ProductResponse
 
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -24,7 +22,7 @@ import com.ramesh.core.data.model.Product
 
 fun HomeContent(
     modifier: Modifier,
-    listProduct: List<Product>,
+    listProduct: List<ProductResponse>,
     navigateToDetail: (Int) -> Unit,
 ) {
     Column(

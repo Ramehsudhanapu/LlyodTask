@@ -17,8 +17,6 @@ android {
         minSdk = Versions.min_sdk
         targetSdk = Versions.target_sdk
 
-        buildConfigField("String", "BASE_URL", "https://dummyjson.com/")
-
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")

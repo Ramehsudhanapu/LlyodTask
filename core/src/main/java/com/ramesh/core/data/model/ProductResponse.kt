@@ -4,12 +4,16 @@ package com.ramesh.core.data.model
 import com.google.gson.annotations.SerializedName
 
 data class ProductResponse(
-    @SerializedName("limit")
-    val limit: Int? = null,
-    @SerializedName("products")
-    val products: MutableList<Product>? = null,
-    @SerializedName("skip")
-    val skip: Int? = null,
-    @SerializedName("total")
-    val total: Int? = null
+    @SerializedName("category")
+    val category: String?=null,
+    @SerializedName("description")
+    val description: String?=null,
+    @SerializedName("id")
+    val id: Int?=null,
+    @SerializedName("image")
+    val image: String?=null,
+    @SerializedName("price")
+    val price: Double?=null,
+    @SerializedName("title")
+    val title: String?=null
 )

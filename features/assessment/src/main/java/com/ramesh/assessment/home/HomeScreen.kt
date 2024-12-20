@@ -1,38 +1,37 @@
 package com.ramesh.assessment.home
 
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.ramesh.core.R
 import com.ramesh.assessment.component.ProgressProduct
 import com.ramesh.assessment.home.section.HomeContent
 import com.ramesh.core.data.UiState
-import com.ramesh.core.data.model.ProductResponse
 import com.ramesh.core.ui.componets.particle.SearchBar
 import com.ramesh.core.ui.componets.particle.template.MainTemplate
 import com.ramesh.core.ui.componets.particle.theme.Gray200
-import com.ramesh.core.ui.componets.particle.theme.md_theme_dark_inverseSurface
 
 @Composable
 fun HomeScreen(
+    categoryName: String,
+    navController: NavController,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel(),
     navigateToDetail: (Int) -> Unit,
-    navigateToSearch: () -> Unit
+    //navigateToSearch: () -> Unit
 ) {
-
-    val UiStateCategory by remember { viewModel.UiStateCategory }.collectAsState()
+    val uiState by viewModel._UiStateCategory.collectAsState()
 
     MainTemplate(
         modifier = modifier,
@@ -42,32 +41,35 @@ fun HomeScreen(
                 onQueryChange = {},
                 modifier = modifier.background(MaterialTheme.colorScheme.primary),
                 isEnabled = false,
-                onSearchClicked = { navigateToSearch() },
-
-
-                )
-
+                onSearchClicked = {
+                    // navigateToSearch()
+                },
+            )
         },
         content = {
             Box(
                 contentAlignment = Alignment.Center,
-                modifier = modifier.fillMaxSize().background(Gray200)
-            )
-            {
-                when (UiStateCategory) {
+                modifier = modifier
+                    .fillMaxSize()
+                    .background(Gray200)
+            ) {
+                // Load data here, within the content
+                LaunchedEffect(key1 = categoryName) {
+                    viewModel.getAllProductsByCategory(categoryName)
+                }
+
+                when (val currentUiState = uiState) {
                     is UiState.Loading -> {
-                        viewModel.getCategoryApiCall()
                         ProgressProduct()
                     }
 
                     is UiState.Success -> {
-                        (UiStateCategory as UiState.Success<ProductResponse>).data.products?.let { it1 ->
-                            HomeContent(
-                                modifier = modifier,
-                                listProduct = it1,
-                                navigateToDetail = navigateToDetail,
-                            )
-                        }
+                        val products = currentUiState.data
+                        HomeContent(
+                            modifier = modifier,
+                            listProduct = products,
+                            navigateToDetail = navigateToDetail,
+                        )
                     }
 
                     is UiState.Error -> {
@@ -76,24 +78,12 @@ fun HomeScreen(
                             color = MaterialTheme.colorScheme.onSurface
                         )
                     }
+
+                    else -> {
+                        // Handle other states if needed, or do nothing
+                    }
                 }
             }
-
-        })
+        }
+    )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

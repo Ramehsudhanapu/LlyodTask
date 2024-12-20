@@ -1,74 +1,250 @@
-# Lloyds Clean Architecture Android Project
+# Lloyds E-commerce Android Application - Clean Architecture
 
-This project is a modern Android application built using a Clean Architecture approach, Jetpack Compose for the UI, and other cutting-edge Android development best practices. It demonstrates how to structure an Android app for maintainability, testability, scalability, and robustness. The application is designed to fetch and display product data, showcasing a well-organized and efficient codebase.
+This project is a robust and scalable Android e-commerce application built using a **Clean Architecture** approach, **Jetpack Compose** for the UI, and other modern Android development best practices. It demonstrates how to structure an Android app for maintainability, testability, scalability, and robustness. The application is designed to fetch, display, and manage product data, showcasing a well-organized and efficient codebase.
 
-## Features
+---
 
-*   **Clean Architecture:** The project strictly adheres to the principles of Clean Architecture, ensuring a clear separation of concerns into distinct layers:
-    *   **Presentation Layer:** Built entirely with Jetpack Compose, this layer handles UI rendering and user interactions.
-    *   **Domain Layer:** Contains use cases (e.g., `GetCategoryByIDUseCase`) that encapsulate the application's business logic.
-    *   **Data Layer:** Manages data fetching and persistence through repositories (e.g., `ProductRepository`) and data sources (e.g., network, database).
-*   **Jetpack Compose:** The UI is built using Jetpack Compose, providing a declarative and efficient way to create user interfaces.
-*   **Dependency Injection:** Hilt is used for dependency injection, simplifying dependency management and promoting testability.
-*   **Networking:** Retrofit is employed for making network requests to fetch data from APIs, with Gson likely used for JSON conversion.
-*   **Asynchronous Data Handling:** Kotlin Flows are used to handle asynchronous data streams, making it easy to work with network requests and other asynchronous operations.
-*   **Unit Testing:** The project includes comprehensive unit tests using JUnit, Mockito, and `kotlinx-coroutines-test` to ensure the correctness of the business logic and data layers.
-*   **Image Loading:** Coil is used for efficient and modern image loading.
-*   **Navigation:** Navigation Compose is used for navigation.
-*   **Lifecycle:** Lifecycle-runtime-ktx is used for lifecycle.
-*   **Core:** Core-ktx is used for core.
-*   **Activity:** Activity-compose is used for activity.
-*   **Empty State Handling:** The app gracefully handles cases where no data is available, as demonstrated by the `EmptyProduct` composable.
-*   **Description Page:** The application features a detailed description page for each product. This page provides comprehensive information about the product, enhancing the user's understanding and experience.
-*   **Pager:** The description page utilizes a pager component to allow users to easily swipe between different sections of the product description or related content. This provides a smooth and intuitive way to navigate through detailed information.
-* **Dynamic Categories:** The application fetches product categories from an external API and dynamically populates the bottom navigation bar with these categories. This allows for a flexible and up-to-date navigation experience.
+## **Overview**
 
-## Project Structure
+The application provides a comprehensive e-commerce experience, allowing users to browse products, view detailed product information, search for specific items, and navigate through dynamically loaded categories. The project is structured into multiple modules, each with a clear responsibility, following the principles of **Clean Architecture**.
 
-The project is organized into multiple modules, following a Clean Architecture approach:
+---
 
-*   **`app`:** The main application module, responsible for assembling the application and launching the UI.
-*   **`features`:** Contains feature modules, each encapsulating a specific part of the application's functionality.
-    *   **`assessment`:** (Example) A feature module that likely handles product-related functionality, such as displaying product lists and details.
-*   **`core`:** Contains core components and utilities that are shared across modules, such as common UI elements, extensions, and helper functions.
-*   **`data`:** Contains data layer, responsible for data fetching and persistence.
-*   **`domain`:** Contains domain layer, responsible for business logic.
+## **Key Features**
 
-## Dependencies
+1. **Clean Architecture:**
+   - Separation of concerns into three distinct layers:
+      - **Presentation Layer**: Handles UI and user interactions (Jetpack Compose).
+      - **Domain Layer**: Contains business logic encapsulated in use cases.
+      - **Data Layer**: Manages data sources (APIs, local DB) through repositories.
 
-The project uses the following key dependencies, which are managed directly in the module-level `build.gradle.kts` files:
+2. **Jetpack Compose:**
+   - Declarative and efficient UI development for modern Android apps.
 
-*   **Jetpack Compose:**
-    *   `androidx.compose.ui:ui`
-    *   `androidx.compose.material3:material3`
-    *   `androidx.compose.ui:ui-tooling-preview`
-*   **Dependency Injection:**
-    *   `com.google.dagger:hilt-android`
-    *   `androidx.hilt:hilt-navigation-compose`
-*   **Networking:**
-    *   `com.squareup.retrofit2:retrofit`
-    *   `com.squareup.retrofit2:converter-gson`
-*   **Asynchronous Data:**
-    *   `kotlinx-coroutines-android`
-*   **Testing:**
-    *   `junit:junit`
-    *   `org.mockito:mockito-core`
-    *   `org.mockito.kotlin:mockito-kotlin`
-    *   `org.jetbrains.kotlinx:kotlinx-coroutines-test`
-*   **Image loading:**
-    *   `io.coil-kt:coil-compose`
-*   **Navigation:**
-    *   `androidx.navigation:navigation-compose`
-*   **Lifecycle:**
-    *   `androidx.lifecycle:lifecycle-runtime-ktx`
-*   **Core:**
-    *   `androidx.core:core-ktx`
-*   **Activity:**
-    *   `androidx.activity:activity-compose`
-*   **Pager:**
-    * `com.google.accompanist:accompanist-pager:0.33.2-alpha`
-    * `com.google.accompanist:accompanist-pager-indicators:0.33.2-alpha`
+3. **Dependency Injection:**
+   - Hilt simplifies dependency management and improves testability.
 
-## Getting Started
+4. **Networking:**
+   - Retrofit is used for API calls.
+   - Gson for JSON serialization/deserialization.
 
-1.  **Clone the repository:**
+5. **Asynchronous Data Handling:**
+   - Kotlin Flows for seamless async data streams.
+
+6. **Dynamic Categories:**
+   - Bottom navigation categories are fetched dynamically via an external API.
+
+7. **Search Functionality:**
+   - Search products by keywords for an enhanced user experience.
+
+8. **Detailed Product Pages:**
+   - Pager integration using **Accompanist Pager** for swiping between product details.
+
+9. **Error Handling:**
+   - Robust error management for network, parsing, and empty state scenarios.
+
+10. **Unit Testing:**
+   - Ensures app stability using **JUnit**, **Mockito**, and **kotlinx-coroutines-test**.
+
+---
+
+## **Clean Architecture Layers**
+
+The app is divided into three main layers:
+
+```
+                          +--------------------------+
+                          |      Presentation        |
+                          |  Jetpack Compose, ViewModel |
+                          +------------+-------------+
+                                       |
+                          +------------v-------------+
+                          |         Domain           |
+                          |    Use Cases (Business Logic) |
+                          +------------+-------------+
+                                       |
+                          +------------v-------------+
+                          |          Data            |
+                          | Repositories, APIs, DB  |
+                          +--------------------------+
+```
+
+---
+
+## **Data Flow**
+
+Below is the **data flow** diagram representing how data travels through different layers:
+
+```
+   +------------------------+
+   |        UI (User)       |
+   | Jetpack Compose Views  |
+   +-----------+------------+
+               |
+               v
+   +-----------v------------+
+   |     ViewModel Layer    |
+   |   Handles UI State     |
+   |   & User Interaction   |
+   +-----------+------------+
+               |
+               v
+   +-----------v------------+
+   |    Domain Layer        |
+   |  Business Logic (Use   |
+   |  Cases like FetchData) |
+   +-----------+------------+
+               |
+               v
+   +-----------v------------+
+   |   Data Layer           |
+   | Repository Pattern     |
+   | Manages API/DB Sources |
+   +-----------+------------+
+               |
+               v
+   +-----------v------------+
+   |   External Sources     |
+   | (Remote API/Local DB)  |
+   +------------------------+
+```
+
+### **Detailed Data Flow Steps:**
+
+1. **User Interaction:**
+   - The user interacts with the UI (e.g., clicks on a product).
+   - UI events are sent to the **ViewModel**.
+
+2. **ViewModel:**
+   - The ViewModel processes the event and calls the appropriate **Use Case** in the Domain Layer.
+   - Observes and updates the UI state.
+
+3. **Use Case:**
+   - The Use Case contains the business logic for the action (e.g., fetch products).
+   - It communicates with the **Repository** in the Data Layer.
+
+4. **Repository:**
+   - Fetches data either from **Remote APIs** (via Retrofit) or local sources (e.g., Room database).
+   - Returns the data back to the Use Case.
+
+5. **ViewModel and UI State:**
+   - The ViewModel processes the data and updates the UI state.
+   - The Jetpack Compose UI observes this state and re-renders accordingly.
+
+---
+
+## **Project Structure**
+
+The project follows a modular structure:
+
+```
+Lloyds-Clean-Architecture-Android/
+│
+├── app/                          # Main app module
+│   ├── di/                       # Dependency Injection (AppModule)
+│   ├── presentation/             # UI Composables and ViewModels
+│   ├── navigation/               # Jetpack Compose Navigation
+│   ├── MainActivity.kt           # App entry point
+│   └── build.gradle.kts
+│
+├── core/                         # Core module
+│   ├── data/
+│   │   ├── model/                # Data models (Product, Category)
+│   │   ├── network/              # Retrofit API services
+│   │   └── repository/           # Repository interfaces
+│   │
+│   ├── domain/
+│   │   └── usecase/              # Business logic (Use Cases)
+│   └── di/                       # Core DI modules
+│
+├── features/                     # Feature-specific modules
+│   └── assessment/
+│       ├── data/                 # Data handling
+│       ├── domain/               # Use cases for Assessment
+│       ├── presentation/         # Composables and screens
+│       └── di/                   # DI for feature module
+│
+└── build.gradle.kts
+```
+
+### **Modules**
+
+1. **`app` Module**:
+   - Main application module.
+   - Hosts the navigation graph and integrates other modules.
+   - **Dependencies:** `core`, `features`, and Jetpack Compose libraries.
+
+2. **`core` Module**:
+   - Shared logic across the app (Models, Repositories, Use Cases).
+   - Includes:
+      - `data/`: Models, network interfaces, repositories.
+      - `domain/`: Business logic (Use Cases).
+      - `di/`: Dependency Injection with Hilt.
+
+3. **`features` Modules**:
+   - Contains feature-specific code (e.g., `assessment`).
+   - Organized into `data`, `domain`, and `presentation` layers.
+
+---
+
+## **Technology Stack**
+
+| **Layer**              | **Technologies**              |
+|------------------------|-------------------------------|
+| **Presentation**       | Jetpack Compose, Navigation  |
+| **Domain**             | Kotlin Use Cases             |
+| **Data**               | Retrofit, Coil, Kotlin Flows |
+| **Dependency Injection** | Hilt                       |
+| **Testing**            | JUnit, Mockito, Coroutines   |
+| **Build System**       | Gradle Kotlin DSL            |
+
+---
+
+## **Key Components**
+
+1. **Product List Screen**:
+   - Displays product lists fetched from API.
+   - Uses `LazyColumn` for efficient list rendering.
+
+2. **Product Detail Screen**:
+   - Detailed view of a product.
+   - Swiping implemented using **Accompanist Pager**.
+
+3. **Dynamic Navigation**:
+   - Bottom navigation categories are fetched via API dynamically.
+
+---
+
+## **Unit Testing**
+
+- **Frameworks Used**:
+   - **JUnit 5**
+   - **Mockito**
+   - **kotlinx-coroutines-test**
+
+- **Test Scenarios**:
+   - Use cases ensure correct business logic.
+   - Repository tests validate data fetching.
+   - ViewModel tests verify proper state handling.
+
+---
+
+## **Error Handling**
+
+1. **Network Errors**:
+   - Retry logic implemented using Kotlin Flows.
+2. **Empty States**:
+   - Displayed gracefully using an `EmptyProduct` composable.
+3. **Data Parsing Errors**:
+   - Handled using Gson with proper error management.
+
+---
+
+## **How to Build and Run**
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Ramehsudhanapu/LlyodTask.git
+   ```
+2. Open the project in **Android Studio**.
+

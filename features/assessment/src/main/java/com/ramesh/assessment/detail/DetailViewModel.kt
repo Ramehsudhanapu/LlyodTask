@@ -4,25 +4,22 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ramesh.core.data.UiState
 import com.ramesh.core.data.model.Product
-import com.ramesh.core.domain.usecase.GetCategoryByIDUseCase
+import com.ramesh.core.domain.usecase.GetProductByIDUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val getProductByIdUseCase:  GetCategoryByIDUseCase,
+    private val getProductByIdUseCase:  GetProductByIDUseCase,
 
-) : ViewModel() {
+    ) : ViewModel() {
 
     private val _uiStateProduct: MutableStateFlow<UiState<Product>> = MutableStateFlow(UiState.Loading)
     val uiStateProduct: StateFlow<UiState<Product>> = _uiStateProduct
