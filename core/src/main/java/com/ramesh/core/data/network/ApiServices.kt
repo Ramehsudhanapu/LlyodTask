@@ -7,18 +7,10 @@ import retrofit2.http.Path
 
 interface ApiServices {
     companion object {
-        const val BASE_URL = "https://fakestoreapi.com"; //https://dummyjson.com/
+        const val BASE_URL = "https://fakestoreapi.com";
 
 
     }
-
-//    @GET("products")
-//    suspend fun getProducts(): ProductResponse
-//    @GET("products/{id}")
-//    suspend fun getProductById(@Path("id") id: Int): Product
-//
-//    @GET("products/search")
-//    suspend fun searchProduct(@Query("q") query: String): ProductResponse
 
     @GET("products/categories")
     suspend fun getCategories(): List<String>
