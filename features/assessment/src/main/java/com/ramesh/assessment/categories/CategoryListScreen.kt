@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -30,9 +31,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.ramesh.core.data.UiState
-import com.ramesh.core.ui.componets.particle.theme.Gray200
+
 import com.ramesh.core.ui.componets.particle.theme.md_theme_light_onPrimary
-import com.ramesh.core.ui.componets.particle.theme.md_theme_light_primaryContainer
 
 @Composable
 fun CategoryListScreen(
@@ -112,6 +112,7 @@ fun CategoryCard(category: String, onCategoryClick: () -> Unit) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .background(Color(0xFFF0F0F0)) // Set a solid background color here
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center

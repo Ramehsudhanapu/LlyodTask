@@ -1,4 +1,4 @@
-package com.ramesh.assessment.navigation.model
+package com.ramesh.assessment.splash
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -50,16 +50,11 @@ fun SplashScreen(
                     .padding(Dimens.dp16)
                     .shadow(elevation = Dimens.dp1, shape = RoundedCornerShape(Dimens.dp12),)
                     .clip(shape = RoundedCornerShape(Dimens.dp12)),
-                painter = painterResource(id = R.drawable.ic_launcher),
+                painter = painterResource(id = R.drawable.llyodsplash),
                 contentDescription = stringResource(id = R.string.app_name),
                 contentScale = ContentScale.Crop,
             )
             Spacer(modifier = modifier.height(Dimens.dp16))
-//            Text(
-//                text = stringResource(id = R.string.app_name),
-//                style = MaterialTheme.typography.headlineMedium,
-//                color = MaterialTheme.colorScheme.onPrimary
-//            )
         }
     }
 }

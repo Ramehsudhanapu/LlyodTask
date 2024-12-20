@@ -4,8 +4,24 @@ import com.ramesh.core.data.model.ProductResponse
 import com.ramesh.core.data.model.Product
 
 object UtilTests {
-    val dummyProduct = Product("Shirt", "CottonShirt 1")
-    val dummyProductResponse = ProductResponse("jeweellay", "jewellery")
+    val dummyProductResponse = ProductResponse(
+        id = 1,
+        title = "Test Product",
+        price = 100.0,
+        description = "This is a test product",
+        category = "Test Category",
+        image = "test_image.jpg",
+
+        )
+    val dummyProduct = ProductResponse(
+        id = 1,
+        title = "Test Product",
+        price = 100.0,
+        description = "This is a test product",
+        category = "Test Category",
+        image = "test_image.jpg",
+
+        )
 }
 
 

@@ -30,14 +30,15 @@ fun TitleProduct(product: Product) {
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.bodyMedium.copy(
-                fontWeight = FontWeight.Normal, fontSize = 28.sp
+                fontWeight = FontWeight.Normal, fontSize = 20.sp
             ),
             color = Color.Black
         )
         Text(
+            modifier = Modifier.padding(top = 4.dp),
             text = product.price.fromDollarToRupiah(),
             style = MaterialTheme.typography.bodySmall.copy(
-                fontWeight = FontWeight.Light, fontSize = 20.sp
+                fontWeight = FontWeight.Light, fontSize = 18.sp
             ),
             color = MaterialTheme.colorScheme.secondary
         )

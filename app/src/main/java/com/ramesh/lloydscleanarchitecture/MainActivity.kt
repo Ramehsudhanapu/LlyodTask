@@ -14,7 +14,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import com.ramesh.assessment.navigation.model.SplashScreen
+import com.ramesh.assessment.splash.SplashScreen
 import com.ramesh.core.ui.componets.particle.theme.LlyodTheme
 import com.ramesh.lloydscleanarchitecture.ui.theme.LlyodMainApp
 import dagger.hilt.android.AndroidEntryPoint

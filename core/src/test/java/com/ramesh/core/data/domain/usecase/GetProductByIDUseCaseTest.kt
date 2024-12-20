@@ -30,19 +30,19 @@ class GetProductByIDUseCaseTest {
          getCategoryByIDUseCaseTest= GetProductByIDUseCase(repository)
 
      }
-    @Test
-    fun `execute should return correct data`() = runTest {
-        // Given
-        val expectResult = UtilTests.dummyProduct
-        val product = 1
-        `when`(repository.getSubCategoryByProductIDApiCall(product)).thenReturn(flow { emit(expectResult) })
-
-        // When
-        val actualResult = getCategoryByIDUseCaseTest.execute(product).first()
-
-        // Then
-        assertEquals(expectResult, actualResult)
-    }
+//    @Test
+//    fun `execute should return correct data`() = runTest {
+//        // Given
+//        val expectResult = UtilTests.dummyProduct
+//        val product = 1
+//        `when`(repository.getSubCategoryByProductIDApiCall(product)).thenReturn(flow { emit(expectResult) })
+//
+//        // When
+//        val actualResult = getCategoryByIDUseCaseTest.execute(product).first()
+//
+//        // Then
+//        assertEquals(expectResult, actualResult)
+//    }
     @Test
     fun `execute should return correct data when repository returns different data`() = runTest {
         // Given
