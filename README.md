@@ -138,33 +138,94 @@ Below is the **data flow** diagram representing how data travels through differe
 The project follows a modular structure:
 
 ```
-Lloyds-Clean-Architecture-Android/
+Lloyds-E-commerce-Android/
+├── app/                                        # Main application module
+│   ├── build.gradle.kts                        # App-specific build configuration
+│   └── src/
+│       └── main/
+│           ├── AndroidManifest.xml             # App manifest
+│           ├── java/
+│           │   └── com.ramesh.lloyds/          # Base package for the app
+│           │       ├── LloydsApplication.kt    # Application class
+│           │       ├── MainActivity.kt         # Main activity
+│           │       ├── di/                     # App-level dependency injection
+│           │       │   └── AppModule.kt        # Module for app-level dependencies
+│           │       ├── navigation/             # Navigation components
+│           │       │   ├── AppNavHost.kt       # Navigation host
+│           │       │   └── NavRoutes.kt        # Navigation routes
+│           │       └── ui/                     # UI-related code
+│           │           ├── theme/              # Jetpack Compose theme
+│           │           │   ├── Color.kt
+│           │           │   ├── Shape.kt
+│           │           │   ├── Theme.kt
+│           │           │   └── Type.kt
+│           │           └── components/         # Reusable UI components
+│           │               └── ...
+│           └── res/                            # Resources
+│               ├── drawable/
+│               ├── layout/
+│               ├── values/
+│               └── ...
 │
-├── app/                          # Main app module
-│   ├── di/                       # Dependency Injection (AppModule)
-│   ├── presentation/             # UI Composables and ViewModels
-│   ├── navigation/               # Jetpack Compose Navigation
-│   ├── MainActivity.kt           # App entry point
-│   └── build.gradle.kts
+├── core/                                       # Core module (shared logic)
+│   ├── build.gradle.kts                        # Core module build configuration
+│   └── src/
+│       └── main/
+│           ├── java/
+│           │   └── com.ramesh.core/            # Base package for core module
+│           │       ├── data/                  # Data layer
+│           │       │   ├── model/             # Data models (DTOs)
+│           │       │   │   ├── Category.kt
+│           │       │   │   └── Product.kt
+│           │       │   ├── network/           # Network-related code
+│           │       │   │   ├── ApiService.kt  # Retrofit API interface
+│           │       │   │   └── ...
+│           │       │   └── repository/        # Repository implementations
+│           │       │       ├── CategoryRepositoryImpl.kt
+│           │       │       └── ProductRepositoryImpl.kt
+│           │       ├── di/                    # Dependency injection
+│           │       │   ├── NetworkModule.kt   # Network dependencies
+│           │       │   ├── RepositoryModule.kt # Repository dependencies
+│           │       │   └── UseCaseModule.kt   # Use case dependencies
+│           │       └── domain/                # Domain layer
+│           │           ├── model/             # Domain models (Entities)
+│           │           │   ├── Category.kt
+│           │           │   └── Product.kt
+│           │           ├── repository/        # Repository interfaces
+│           │           │   ├── CategoryRepository.kt
+│           │           │   └── ProductRepository.kt
+│           │           └── usecase/           # Use cases
+│           │               ├── GetAllCategoriesUseCase.kt
+│           │               └── GetProductByIdUseCase.kt
+│           └── res/
+│               └── ...
 │
-├── core/                         # Core module
-│   ├── data/
-│   │   ├── model/                # Data models (Product, Category)
-│   │   ├── network/              # Retrofit API services
-│   │   └── repository/           # Repository interfaces
-│   │
-│   ├── domain/
-│   │   └── usecase/              # Business logic (Use Cases)
-│   └── di/                       # Core DI modules
+├── features/                                   # Feature modules
+│   └── assessment/                             # Example feature module
+│       ├── build.gradle.kts                    # Feature module build configuration
+│       └── src/
+│           └── main/
+│               ├── java/
+│               │   └── com.ramesh.assessment/  # Base package for assessment feature
+│               │       ├── data/              # Data layer for assessment
+│               │       │   └── ...
+│               │       ├── di/                # Dependency injection for assessment
+│               │       │   └── AssessmentModule.kt
+│               │       ├── domain/            # Domain layer for assessment
+│               │       │   └── ...
+│               │       └── presentation/      # Presentation layer for assessment
+│               │           ├── home/          # Home screen
+│               │           │   ├── HomeScreen.kt # Home screen composable
+│               │           │   └── HomeViewModel.kt # Home screen view model
+│               │           ├── productdetail/ # Product detail screen
+│               │           │   ├── ProductDetailScreen.kt
+│               │           │   └── ProductDetailViewModel.kt
+│               │           └── ...
+│               └── res/
+│                   └── ...
 │
-├── features/                     # Feature-specific modules
-│   └── assessment/
-│       ├── data/                 # Data handling
-│       ├── domain/               # Use cases for Assessment
-│       ├── presentation/         # Composables and screens
-│       └── di/                   # DI for feature module
-│
-└── build.gradle.kts
+├── build.gradle.kts                            # Project-level build file
+└── settings.gradle.kts                         # Project settings
 ```
 
 ### **Modules**
