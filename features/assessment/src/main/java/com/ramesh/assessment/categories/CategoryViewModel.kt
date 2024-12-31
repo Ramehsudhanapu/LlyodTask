@@ -1,5 +1,4 @@
 package com.ramesh.assessment.categories
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ramesh.assessment.utility.UiState

@@ -1,7 +1,6 @@
 package com.ramesh.core.data.domain.usecase
-
 import com.ramesh.core.data.model.Product
-import com.ramesh.core.domain.repository.CategoryRepository
+import com.ramesh.core.domain.repository.ProductRepository
 import com.ramesh.core.domain.usecase.GetProductByIDUseCase
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -19,7 +18,7 @@ import org.mockito.junit.MockitoJUnitRunner
 class GetProductByIDUseCaseTest {
 
     @Mock
-     private  lateinit var   repository:CategoryRepository
+     private  lateinit var   repository:ProductRepository
      private  lateinit var  getCategoryByIDUseCaseTest: GetProductByIDUseCase
 
      @Before

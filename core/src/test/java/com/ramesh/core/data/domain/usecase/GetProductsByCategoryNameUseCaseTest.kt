@@ -1,6 +1,6 @@
 package com.ramesh.core.data.domain.usecase
 import com.ramesh.core.data.model.ProductResponse
-import com.ramesh.core.domain.repository.CategoryRepository
+import com.ramesh.core.domain.repository.ProductRepository
 import com.ramesh.core.domain.usecase.GetProductsByCategoryNameUseCase
 import com.ramesh.core.util.DummyData
 import junit.framework.TestCase.assertEquals
@@ -22,7 +22,7 @@ import java.lang.RuntimeException
 @RunWith(MockitoJUnitRunner::class)
 class GetProductByCategoriesUseCaseTest {
     @Mock
-    private lateinit var repository: CategoryRepository
+    private lateinit var repository: ProductRepository
     private lateinit var getProductByCategoriesUseCase: GetProductsByCategoryNameUseCase
 
     @Before

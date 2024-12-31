@@ -3,6 +3,7 @@ package com.ramesh.core.data.repository.category
 import com.ramesh.core.data.model.ProductResponse
 import com.ramesh.core.data.datasource.network.ApiServices
 import com.ramesh.core.data.respository.CategoryRepositoryImpl
+import com.ramesh.core.data.respository.ProductRepositoryImpl
 import com.ramesh.core.util.UtilTests
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -31,11 +32,11 @@ class CategoryRepositoryImplTest {
 
     @Mock
     private lateinit var apiServices: ApiServices
-    private lateinit var categoryRepositoryImpl: CategoryRepositoryImpl
+    private lateinit var categoryRepositoryImpl: ProductRepositoryImpl
 
     @Before
     fun setUp() {
-        categoryRepositoryImpl = CategoryRepositoryImpl(apiServices)
+        categoryRepositoryImpl = ProductRepositoryImpl(apiServices)
     }
 
     @Test
