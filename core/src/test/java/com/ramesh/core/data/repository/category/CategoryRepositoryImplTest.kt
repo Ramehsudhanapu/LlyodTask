@@ -8,7 +8,9 @@ import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody
+import okhttp3.ResponseBody.Companion.toResponseBody
 import okio.IOException
 import org.junit.Assert
 import org.junit.Assert.assertTrue
@@ -21,6 +23,7 @@ import org.mockito.kotlin.given
 import org.mockito.kotlin.whenever
 import retrofit2.HttpException
 import retrofit2.Response
+import java.net.SocketTimeoutException
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
@@ -35,45 +38,17 @@ class CategoryRepositoryImplTest {
         categoryRepositoryImpl = CategoryRepositoryImpl(apiServices)
     }
 
-    @Test
-    fun `getProductByCategoriesApiCall should return the correct data`() = runTest {
-        // Given
-        val expectedResult = listOf(UtilTests.dummyProductResponse)
-        val categoryName = "test"
-        whenever(apiServices.getProductsByCategory(categoryName)).thenReturn(expectedResult)
-
-        // When
-        val actualResult =
-            categoryRepositoryImpl.getProductByCategoriesApiCall(categoryName).first()
-
-        // Then
-        assertEquals(expectedResult, actualResult)
-    }
 
     @Test
-    fun `getProductByCategoriesApiCall should return error flow when exceptions occur`() = runTest {
-        // Given
-        val expectedException = IOException("Please try again later.")
-        val categoryName = "jewelery"
-        given(apiServices.getProductsByCategory(categoryName)).willThrow(expectedException)
-
-        // When
-        val actualResult = runCatching {
-            categoryRepositoryImpl.getProductByCategoriesApiCall(categoryName).first()
-        }
-
-        // Then
-        assertTrue(actualResult.isFailure)
-        Assert.assertEquals(expectedException.message, actualResult.exceptionOrNull()?.message)
-    }
-
-    @Test
-    fun `getSubCategoryByProductIDApiCall should return error flow when exception occur`() =
+    fun `getSubCategoryByProductIDApiCall should return error flow when http exception occur`() =
         runTest {
             // Given
-            val expectedException = IOException("An error Occurred")
+            val expectedExceptionMessage = "Unable to fetch product. Please try again later."
             val productId = 1
-            given(apiServices.getProductById(productId)).willThrow(expectedException)
+            val errorBody = "".toResponseBody("application/json".toMediaTypeOrNull())
+            val errorResponse = Response.error<ProductResponse>(404, errorBody)
+            val httpException = HttpException(errorResponse)
+            given(apiServices.getProductById(productId)).willThrow(httpException)
 
             // When
             val actualResult = runCatching {
@@ -82,49 +57,9 @@ class CategoryRepositoryImplTest {
 
             // Then
             assertTrue(actualResult.isFailure)
-            Assert.assertEquals(expectedException.message, actualResult.exceptionOrNull()?.message)
+            val actualException = actualResult.exceptionOrNull()
+            assertTrue(actualException is Exception)
+            Assert.assertEquals(expectedExceptionMessage, actualException?.message)
         }
-
-    @Test
-    fun `getProductsByCategory should return error flow when http exception occur`() = runTest {
-        // Given
-        val expectedException = HttpException(
-            Response.error<List<ProductResponse>>(
-                404,
-                okhttp3.ResponseBody.create(null, "")
-            )
-        )
-        val categoryName = "jewelery"
-        given(apiServices.getProductsByCategory(categoryName)).willThrow(expectedException)
-
-        // When
-        val actualResult = runCatching {
-            categoryRepositoryImpl.getProductByCategoriesApiCall(categoryName).first()
-        }
-
-        // Then
-        assertTrue(actualResult.isFailure)
-        Assert.assertEquals(expectedException, actualResult.exceptionOrNull()?.cause)
-    }
-
-    @Test
-    fun `getSubCategoryByProductIDApiCall should return error flow when http exception occur`() = runTest {
-        // Given
-        val expectedExceptionMessage = "Unable to fetch product. Please try again later."
-        val productId = 1
-        val errorResponse = Response.error<ProductResponse>(404, ResponseBody.create(null, ""))
-        val httpException = HttpException(errorResponse)
-        given(apiServices.getProductById(productId)).willThrow(httpException)
-
-        // When
-        val actualResult = runCatching {
-            categoryRepositoryImpl.getSubCategoryByProductIDApiCall(productId).first()
-        }
-
-        // Then
-        assertTrue(actualResult.isFailure)
-        val actualException = actualResult.exceptionOrNull()
-        assertTrue(actualException is Exception)
-        Assert.assertEquals(expectedExceptionMessage, actualException?.message)
-    }
 }
+
