@@ -27,7 +27,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.ramesh.assessment.detail.DetailViewModel
 import com.ramesh.core.R
 import com.ramesh.core.data.model.Product
 import com.ramesh.core.ui.componets.particle.theme.Gray200
@@ -36,8 +35,7 @@ import com.ramesh.core.util.Extensions.myToast
 
 @Composable
 fun DetailContent(
-    product: Product,
-    viewModel: DetailViewModel
+    product: Product
 ) {
     val context = LocalContext.current
     val strBuy = stringResource(R.string.buy)

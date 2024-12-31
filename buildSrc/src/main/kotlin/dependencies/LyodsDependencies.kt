@@ -16,6 +16,10 @@ object LyodsDependencies {
         "androidx.compose.material:material:${Versions.material_compose_version}"
     const val material_3 = "androidx.compose.material3:material3:${Versions.material_3_version}"
     const val junit = "junit:junit:${Versions.junit_version}"
+    const val  instance="androidx.arch.core:core-testing:${Versions.instance}"
+    const val mocktio="org.mockito:mockito-core:${Versions.mockito}"
+
+
     const val test_ext_junit = "androidx.test.ext:junit:${Versions.test_ext_junit_version}"
     const val espresso_core =
         "androidx.test.espresso:espresso-core:${Versions.espresso_test_version}"
@@ -34,6 +38,8 @@ object LyodsDependencies {
     // COROUTINES-TEST
     const val coroutines_test =
         "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines_test_version}"
+
+
 
     // REMOTE
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit_version}"
@@ -58,5 +64,8 @@ object LyodsDependencies {
     // SYSTEMUI-CONTROLLER
     const val accompanist_systemuicontroller =
         "com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist_systemuicontroller_version}"
+
+
+
 
 }

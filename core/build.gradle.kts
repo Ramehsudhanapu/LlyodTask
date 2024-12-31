@@ -77,6 +77,9 @@ android {
 
         // TESTING
         testImplementation(LyodsDependencies.junit)
+        testImplementation(LyodsDependencies.instance)
+        testImplementation(LyodsDependencies.mocktio)
+
         androidTestImplementation(LyodsDependencies.test_ext_junit)
         androidTestImplementation(LyodsDependencies.espresso_core)
         androidTestImplementation(platform("androidx.compose:compose-bom:2023.06.00"))
@@ -119,4 +122,7 @@ android {
 
 
     }
+}
+dependencies {
+    testImplementation(project(":features:assessment"))
 }

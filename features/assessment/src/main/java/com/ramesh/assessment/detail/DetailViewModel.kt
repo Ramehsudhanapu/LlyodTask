@@ -2,7 +2,7 @@
 package com.ramesh.assessment.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ramesh.core.data.UiState
+import com.ramesh.assessment.utility.UiState
 import com.ramesh.core.data.model.Product
 import com.ramesh.core.domain.usecase.GetProductByIDUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

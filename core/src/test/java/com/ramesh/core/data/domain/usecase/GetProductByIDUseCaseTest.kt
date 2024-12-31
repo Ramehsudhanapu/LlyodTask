@@ -3,7 +3,6 @@ package com.ramesh.core.data.domain.usecase
 import com.ramesh.core.data.model.Product
 import com.ramesh.core.domain.repository.CategoryRepository
 import com.ramesh.core.domain.usecase.GetProductByIDUseCase
-import com.ramesh.core.util.UtilTests
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
@@ -15,7 +14,6 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
-
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
 class GetProductByIDUseCaseTest {
@@ -30,19 +28,6 @@ class GetProductByIDUseCaseTest {
          getCategoryByIDUseCaseTest= GetProductByIDUseCase(repository)
 
      }
-//    @Test
-//    fun `execute should return correct data`() = runTest {
-//        // Given
-//        val expectResult = UtilTests.dummyProduct
-//        val product = 1
-//        `when`(repository.getSubCategoryByProductIDApiCall(product)).thenReturn(flow { emit(expectResult) })
-//
-//        // When
-//        val actualResult = getCategoryByIDUseCaseTest.execute(product).first()
-//
-//        // Then
-//        assertEquals(expectResult, actualResult)
-//    }
     @Test
     fun `execute should return correct data when repository returns different data`() = runTest {
         // Given

@@ -28,24 +28,22 @@ fun HomeContent(
     Column(
         modifier = modifier.fillMaxSize()
     ) {
-        if (listProduct != null) {
-            LazyVerticalGrid(
-                columns = GridCells.Adaptive(140.dp),
-                content = {
-                    items(listProduct, key = { it.id ?: -1 }) { product ->
-                        ProductItem(
-                            product = product,
-                            modifier = modifier
-                                .fillMaxWidth()
-                                .animateItemPlacement(tween(durationMillis = 100))
-                                .clickable {
-                                    navigateToDetail(product.id ?: return@clickable)
-                                }
-                        )
-                    }
-                }, contentPadding = PaddingValues(8.dp)
-            )
-            if (listProduct.isEmpty()) EmptyProduct()
-        } else EmptyProduct()
+        LazyVerticalGrid(
+            columns = GridCells.Adaptive(140.dp),
+            content = {
+                items(listProduct, key = { it.id ?: -1 }) { product ->
+                    ProductItem(
+                        product = product,
+                        modifier = modifier
+                            .fillMaxWidth()
+                            .animateItemPlacement(tween(durationMillis = 100))
+                            .clickable {
+                                navigateToDetail(product.id ?: return@clickable)
+                            }
+                    )
+                }
+            }, contentPadding = PaddingValues(8.dp)
+        )
+        if (listProduct.isEmpty()) EmptyProduct()
     }
 }

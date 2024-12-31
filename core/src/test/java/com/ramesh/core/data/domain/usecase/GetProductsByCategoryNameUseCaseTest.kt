@@ -1,5 +1,4 @@
 package com.ramesh.core.data.domain.usecase
-
 import com.ramesh.core.data.model.ProductResponse
 import com.ramesh.core.domain.repository.CategoryRepository
 import com.ramesh.core.domain.usecase.GetProductsByCategoryNameUseCase
@@ -18,10 +17,7 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.kotlin.given
-import java.lang.Exception
 import java.lang.RuntimeException
-import java.net.UnknownHostException
-
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
 class GetProductByCategoriesUseCaseTest {

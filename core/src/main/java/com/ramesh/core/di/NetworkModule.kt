@@ -1,8 +1,8 @@
 package com.ramesh.core.di
 import com.google.gson.GsonBuilder
 import com.ramesh.core.BuildConfig
-import com.ramesh.core.data.network.ApiServices
-import com.ramesh.core.data.network.ApiServices.Companion.BASE_URL
+import com.ramesh.core.data.datasource.network.ApiServices
+import com.ramesh.core.data.datasource.network.ApiServices.Companion.BASE_URL
 import com.ramesh.core.network.HttpRequestInterceptor
 import dagger.Module
 import dagger.Provides

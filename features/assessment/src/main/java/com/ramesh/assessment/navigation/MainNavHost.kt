@@ -28,7 +28,6 @@ fun MainNavHost(
     ) {
         composable(BottomBarScreen.Home.route) {
             CategoryListScreen(
-                navController = navController,
                 navigateToHome = { categoryName ->
                     navController.navigate(GeneralScreen.HomeScreen.createRoute(categoryName))
                 }
@@ -47,7 +46,6 @@ fun MainNavHost(
             val categoryName = it.arguments?.getString("categoryName") ?: ""
             HomeScreen(
                 categoryName = categoryName,
-                navController = navController,
                 navigateToDetail = { productId ->
                     navController.navigate(GeneralScreen.DetailProduct.createRoute(productId))
                 }

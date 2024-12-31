@@ -2,7 +2,7 @@ package com.ramesh.core.data.respository
 
 import com.ramesh.core.data.model.ProductResponse
 import com.ramesh.core.data.model.Product
-import com.ramesh.core.data.network.ApiServices
+import com.ramesh.core.data.datasource.network.ApiServices
 import com.ramesh.core.domain.repository.CategoryRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

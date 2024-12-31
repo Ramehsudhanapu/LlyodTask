@@ -7,14 +7,9 @@ import javax.inject.Inject
 
  class GetProductByIDUseCase @Inject constructor(
   private val repository: CategoryRepository) : BaseUseCase<Int, Flow<Product>>() {
-
   override fun execute(params: Int): Flow<Product> {
     return repository.getSubCategoryByProductIDApiCall(params)
 
   }
-
-
-
-
 
 }

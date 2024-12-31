@@ -17,6 +17,9 @@ object Versions {
     const val material_compose_version = "1.3.1"
     const val material_3_version = "1.1.2"
     const val junit_version = "4.13.2"
+    const val instance="2.2.0"
+    const val mockito="5.10.0"
+
     const val test_ext_junit_version = "1.1.5"
     const val espresso_test_version = "3.5.1"
     const val navigation_compose = "2.5.3"

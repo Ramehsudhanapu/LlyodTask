@@ -1,4 +1,4 @@
-package com.ramesh.core.data.network
+package com.ramesh.core.data.datasource.network
 import com.ramesh.core.data.model.ProductResponse
 import com.ramesh.core.data.model.Product
 import retrofit2.http.GET
@@ -7,11 +7,8 @@ import retrofit2.http.Path
 
 interface ApiServices {
     companion object {
-        const val BASE_URL = "https://fakestoreapi.com";
-
-
+        const val BASE_URL = "https://fakestoreapi.com"
     }
-
     @GET("products/categories")
     suspend fun getCategories(): List<String>
 

@@ -21,8 +21,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramesh.assessment.component.ProgressProduct
 import com.ramesh.assessment.detail.section.DetailContent
+import com.ramesh.assessment.utility.UiState
 import com.ramesh.core.R
-import com.ramesh.core.data.UiState
 import com.ramesh.core.ui.componets.particle.theme.Gray200
 
 
@@ -68,7 +68,7 @@ fun DetailScreen(
                         }
 
                         is UiState.Success -> {
-                            DetailContent(product = uiState.data, viewModel = viewModel)
+                            DetailContent(product = uiState.data)
                         }
 
                         is UiState.Error -> {

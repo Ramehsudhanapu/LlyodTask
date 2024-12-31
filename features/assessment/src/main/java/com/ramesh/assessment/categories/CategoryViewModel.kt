@@ -2,7 +2,7 @@ package com.ramesh.assessment.categories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ramesh.core.data.UiState
+import com.ramesh.assessment.utility.UiState
 import com.ramesh.core.domain.usecase.GetAllCategoriesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

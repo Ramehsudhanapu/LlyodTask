@@ -17,7 +17,7 @@ import androidx.navigation.NavController
 import com.ramesh.core.R
 import com.ramesh.assessment.component.ProgressProduct
 import com.ramesh.assessment.home.section.HomeContent
-import com.ramesh.core.data.UiState
+import com.ramesh.assessment.utility.UiState
 import com.ramesh.core.ui.componets.particle.SearchBar
 import com.ramesh.core.ui.componets.particle.template.MainTemplate
 import com.ramesh.core.ui.componets.particle.theme.Gray200
@@ -25,13 +25,11 @@ import com.ramesh.core.ui.componets.particle.theme.Gray200
 @Composable
 fun HomeScreen(
     categoryName: String,
-    navController: NavController,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel(),
     navigateToDetail: (Int) -> Unit,
-    //navigateToSearch: () -> Unit
 ) {
-    val uiState by viewModel._UiStateCategory.collectAsState()
+    val uiState by viewModel._uiStateCategory.collectAsState()
 
     MainTemplate(
         modifier = modifier,
@@ -79,9 +77,7 @@ fun HomeScreen(
                         )
                     }
 
-                    else -> {
-                        // Handle other states if needed, or do nothing
-                    }
+
                 }
             }
         }

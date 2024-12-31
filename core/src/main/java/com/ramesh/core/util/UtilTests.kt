@@ -1,7 +1,5 @@
 package com.ramesh.core.util
-
 import com.ramesh.core.data.model.ProductResponse
-import com.ramesh.core.data.model.Product
 
 object UtilTests {
     val dummyProductResponse = ProductResponse(

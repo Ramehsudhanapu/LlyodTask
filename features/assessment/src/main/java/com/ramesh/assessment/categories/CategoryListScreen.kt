@@ -30,13 +30,12 @@ import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.ramesh.core.data.UiState
+import com.ramesh.assessment.utility.UiState
 
 import com.ramesh.core.ui.componets.particle.theme.md_theme_light_onPrimary
 
 @Composable
 fun CategoryListScreen(
-    navController: NavController,
     viewModel: CategoryViewModel = hiltViewModel(),
     navigateToHome: (String) -> Unit
 ) {
@@ -97,10 +96,6 @@ fun CategoryColumn(
 
 @Composable
 fun CategoryCard(category: String, onCategoryClick: () -> Unit) {
-    val configuration = LocalConfiguration.current
-    val screenWidth = configuration.screenWidthDp.dp
-    val cardWidth = screenWidth * 0.8f // 80% of screen width
-    val cardHeight = cardWidth / 2.2f // Maintain aspect ratio (width / height = 2.2)
 
     Card(
         modifier = Modifier

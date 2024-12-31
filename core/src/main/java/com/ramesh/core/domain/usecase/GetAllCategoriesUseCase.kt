@@ -1,6 +1,5 @@
 package com.ramesh.core.domain.usecase
 
-import com.ramesh.core.data.model.Categories
 import com.ramesh.core.domain.repository.CategoryRepository
 
 import kotlinx.coroutines.flow.Flow

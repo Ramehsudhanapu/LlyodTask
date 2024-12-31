@@ -1,4 +1,4 @@
-package com.ramesh.core.data
+package com.ramesh.assessment.utility
 
 sealed class UiState<out T> {
     object Loading : UiState<Nothing>()
