@@ -24,9 +24,6 @@ class HomeViewModel @Inject constructor(
     val _uiStateCategory: MutableStateFlow<UiState<List<ProductResponse>>> =
         MutableStateFlow(UiState.Loading)
 
-    val UiStateCategory: StateFlow<UiState<List<ProductResponse>>> = _uiStateCategory
-    private val _query = mutableStateOf("")
-    val query: State<String> get() = _query
 
     // get the category data from the api
     fun getAllProductsByCategory(categoryName: String) {

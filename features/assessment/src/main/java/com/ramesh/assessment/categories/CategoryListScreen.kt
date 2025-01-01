@@ -27,7 +27,6 @@ import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.ramesh.assessment.utility.UiState
 
 import com.ramesh.core.ui.componets.particle.theme.md_theme_light_onPrimary

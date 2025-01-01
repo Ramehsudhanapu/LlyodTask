@@ -39,7 +39,7 @@ fun HomeScreen(
                 modifier = modifier.background(MaterialTheme.colorScheme.primary),
                 isEnabled = false,
                 onSearchClicked = {
-                    // navigateToSearch()
+                    // todo
                 },
             )
         },
