@@ -2,17 +2,13 @@ package com.ramesh.core.data.repository.category
 
 import com.ramesh.core.data.model.ProductResponse
 import com.ramesh.core.data.datasource.network.ApiServices
-import com.ramesh.core.data.respository.CategoryRepositoryImpl
+
 import com.ramesh.core.data.respository.ProductRepositoryImpl
-import com.ramesh.core.util.UtilTests
-import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.ResponseBody
 import okhttp3.ResponseBody.Companion.toResponseBody
-import okio.IOException
 import org.junit.Assert
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -21,10 +17,10 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.kotlin.given
-import org.mockito.kotlin.whenever
+
 import retrofit2.HttpException
 import retrofit2.Response
-import java.net.SocketTimeoutException
+
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
