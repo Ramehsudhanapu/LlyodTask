@@ -1,11 +1,8 @@
 package com.ramesh.assessment.navigation.model
 
-
-
 import com.ramesh.core.R
 
-
-sealed class BottomBarScreen(val route: String) {
+sealed class BottomBarScreen() {
     object Home : BottomBar(
         route = "home",
         titleResId = R.string.home,

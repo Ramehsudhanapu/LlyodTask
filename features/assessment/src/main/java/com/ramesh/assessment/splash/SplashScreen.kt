@@ -25,9 +25,6 @@ import com.ramesh.core.R
 import com.ramesh.core.ui.componets.particle.theme.LlyodTheme
 import com.ramesh.core.util.Dimens
 import kotlinx.coroutines.delay
-
-
-
 @Composable
 fun SplashScreen(
     onTimeout: () -> Unit, modifier: Modifier = Modifier

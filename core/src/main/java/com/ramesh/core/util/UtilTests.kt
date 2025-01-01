@@ -1,27 +1,6 @@
 package com.ramesh.core.util
 import com.ramesh.core.data.model.ProductResponse
 
-object UtilTests {
-    val dummyProductResponse = ProductResponse(
-        id = 1,
-        title = "Test Product",
-        price = 100.0,
-        description = "This is a test product",
-        category = "Test Category",
-        image = "test_image.jpg",
-
-        )
-    val dummyProduct = ProductResponse(
-        id = 1,
-        title = "Test Product",
-        price = 100.0,
-        description = "This is a test product",
-        category = "Test Category",
-        image = "test_image.jpg",
-
-        )
-}
-
 
 object DummyData {
     fun createDummyProductResponse(
