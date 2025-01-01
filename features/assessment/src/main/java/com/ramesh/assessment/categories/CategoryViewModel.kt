@@ -18,8 +18,6 @@ class CategoryViewModel @Inject constructor(private val getAllCategoriesUseCase:
     private val _uiState = MutableStateFlow<UiState<List<String>>>(UiState.Loading)
     val uiState: StateFlow<UiState<List<String>>> = _uiState
 
-    // Add uiStateCategory (less recommended)
-    val uiStateCategory: StateFlow<UiState<List<String>>> = _uiState
 
     fun getAllCategories() {
         viewModelScope.launch {
