@@ -1,4 +1,4 @@
-package com.ramesh.core.data.datasource.network
+package com.ramesh.core.data.datasource.remote
 import com.ramesh.core.data.model.ProductResponse
 import com.ramesh.core.data.model.Product
 import retrofit2.http.GET
