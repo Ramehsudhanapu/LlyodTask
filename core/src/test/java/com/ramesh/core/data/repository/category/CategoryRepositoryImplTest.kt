@@ -1,6 +1,6 @@
 package com.ramesh.core.data.repository.category
+import com.ramesh.core.data.datasource.remote.ApiServices
 import com.ramesh.core.data.model.ProductResponse
-import com.ramesh.core.data.datasource.network.ApiServices
 import com.ramesh.core.data.respository.ProductRepositoryImpl
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
