@@ -56,13 +56,16 @@ fun CategoryListScreen(
                 }
 
                 is UiState.Error -> {
+                    // Display the error message
                     Text(
                         text = uiState.message,
                         modifier = Modifier
                             .align(Alignment.Center)
                             .padding(16.dp),
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
+                        color = Color.Red // Change color to indicate error
                     )
+
                 }
 
                 else -> {
