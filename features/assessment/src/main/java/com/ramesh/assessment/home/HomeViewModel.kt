@@ -1,5 +1,4 @@
 package com.ramesh.assessment.home
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ramesh.assessment.utility.BaseViewModel
 import com.ramesh.assessment.utility.UiState
