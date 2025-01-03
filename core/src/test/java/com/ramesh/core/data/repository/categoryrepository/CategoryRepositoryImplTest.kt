@@ -59,16 +59,5 @@ class CategoryRepositoryImplTest {
         assertTrue(exception is Exception)
         assertEquals(errorMessage, exception?.message)
     }
-//    @Test
-//    fun `getAllCategoriesApiCall should emit empty list when api returns empty list`() = runTest {
-//        // Given
-//        val emptyCategories = emptyList<String>()
-//        `when`(apiService.getCategories()).thenReturn(emptyCategories)
-//
-//        // When
-//        val result = repository.getAllCategoriesApiCall().first()
-//
-//        // Then
-//        assertEquals(emptyCategories, result)
-//    }
+
 }
