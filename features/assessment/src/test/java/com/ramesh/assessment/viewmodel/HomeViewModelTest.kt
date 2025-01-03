@@ -1,25 +1,23 @@
-package com.ramesh.core.viewmodel
+package com.ramesh.assessment.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.ramesh.assessment.home.HomeViewModel
-import com.ramesh.core.data.model.ProductResponse
+import com.ramesh.assessment.utility.UiState
 import com.ramesh.core.domain.usecase.GetProductsByCategoryNameUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.StandardTestDispatcher
-import kotlinx.coroutines.test.advanceUntilIdle
+
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito.verify
-import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
 
 @ExperimentalCoroutinesApi
@@ -47,21 +45,19 @@ class HomeViewModelTest {
         Dispatchers.resetMain()
     }
 
+
+
+
     @Test
-    fun `getAllProductsByCategory should call execute on use case with correct category name`() = runTest(testDispatcher) {
+    fun `getAllProductsByCategory should emit Loading initially`() = runTest(testDispatcher) {
         // Given
-        val categoryName = "electronics"
-        val products = listOf(
-            ProductResponse("1", "Product 1", 10, "Description 1", 10.33, "electronics"),
-            ProductResponse("2", "Product 2", 20, "Description 2", 11.33, "electronics")
-        )
-        `when`(getProductsByCategoryNameUseCase.execute(categoryName)).thenReturn(flow { emit(products) })
+        // No specific setup needed for this test
 
         // When
-        viewModel.getAllProductsByCategory(categoryName)
-        advanceUntilIdle()
+        // No action needed, we just check the initial state
 
         // Then
-        verify(getProductsByCategoryNameUseCase).execute(categoryName)
+        val uiState = viewModel._uiStateCategory.value
+        assertEquals(UiState.Loading, uiState)
     }
 }

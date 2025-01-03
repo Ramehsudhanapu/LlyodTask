@@ -1,8 +1,9 @@
 package com.ramesh.core.di
 import com.google.gson.GsonBuilder
 import com.ramesh.core.BuildConfig
-import com.ramesh.core.data.datasource.remote.ApiServices
-import com.ramesh.core.data.datasource.remote.ApiServices.Companion.BASE_URL
+import com.ramesh.core.data.datasource.remote.categoryRemoteDataSource.CategoryApiService
+import com.ramesh.core.data.datasource.remote.productRemoteDataSource.ProductApiService
+import com.ramesh.core.di.RepositoryModule.Companion.BASE_URL
 import com.ramesh.core.network.HttpRequestInterceptor
 import dagger.Module
 import dagger.Provides
@@ -51,7 +52,13 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiServices {
-        return retrofit.create(ApiServices::class.java)
+    fun provideCategoryApiService(retrofit: Retrofit): CategoryApiService {
+        return retrofit.create(CategoryApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideProductApiService(retrofit: Retrofit): ProductApiService {
+        return retrofit.create(ProductApiService::class.java)
     }
 }

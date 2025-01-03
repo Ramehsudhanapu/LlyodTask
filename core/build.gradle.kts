@@ -79,7 +79,7 @@ android {
         testImplementation(LyodsDependencies.junit)
         testImplementation(LyodsDependencies.instance)
         testImplementation(LyodsDependencies.mocktio)
-        testImplementation(project(":features:assessment"))
+
 
         androidTestImplementation(LyodsDependencies.test_ext_junit)
         androidTestImplementation(LyodsDependencies.espresso_core)

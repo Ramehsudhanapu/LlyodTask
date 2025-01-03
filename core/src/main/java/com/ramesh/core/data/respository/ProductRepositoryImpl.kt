@@ -1,16 +1,17 @@
 package com.ramesh.core.data.respository
 
-import com.ramesh.core.data.datasource.remote.ApiServices
+import com.ramesh.core.data.datasource.remote.productRemoteDataSource.ProductApiService
 import com.ramesh.core.data.model.ProductResponse
 import com.ramesh.core.data.model.Product
 import com.ramesh.core.domain.repository.ProductRepository
+import com.ramesh.core.util.AppStrings
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ProductRepositoryImpl @Inject constructor(private val apiService: ApiServices) :
+class ProductRepositoryImpl @Inject constructor(private val apiService: ProductApiService) :
     ProductRepository {
     override fun getProductByCategoriesApiCall(categoryName:String): Flow<List<ProductResponse> > = flow {
         try {
@@ -18,7 +19,7 @@ class ProductRepositoryImpl @Inject constructor(private val apiService: ApiServi
             emit( response)
         } catch (e: Exception) {
             // Handle errors here, e.g., emit an empty list or a specific error state
-            throw Exception("Unable to fetch products. Please try again later.")
+            throw Exception(AppStrings.UNABLE_TO_FETCH_PRODUCTS)
         }
     }
     override fun getSubCategoryByProductIDApiCall(id: Int): Flow<Product> = flow {
@@ -27,7 +28,7 @@ class ProductRepositoryImpl @Inject constructor(private val apiService: ApiServi
             emit(product)
         } catch (e: Exception) {
             // Handle errors here, e.g., emit an empty list or a specific error state
-            throw Exception("Unable to fetch product. Please try again later.")
+            throw Exception(AppStrings.UNABLE_TO_FETCH_PRODUCTS)
         }
     }
 

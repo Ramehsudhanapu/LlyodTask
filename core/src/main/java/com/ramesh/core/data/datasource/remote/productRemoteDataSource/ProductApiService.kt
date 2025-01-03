@@ -1,17 +1,11 @@
-package com.ramesh.core.data.datasource.remote
-import com.ramesh.core.data.model.ProductResponse
+package com.ramesh.core.data.datasource.remote.productRemoteDataSource
+
 import com.ramesh.core.data.model.Product
+import com.ramesh.core.data.model.ProductResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-
-interface ApiServices {
-    companion object {
-        const val BASE_URL = "https://fakestoreapi.com"
-    }
-    @GET("products/categories")
-    suspend fun getCategories(): List<String>
-
+interface ProductApiService {
     @GET("products/category/{categoryname}")
     suspend fun getProductsByCategory(@Path("categoryname") categoryName: String):List<ProductResponse>
 

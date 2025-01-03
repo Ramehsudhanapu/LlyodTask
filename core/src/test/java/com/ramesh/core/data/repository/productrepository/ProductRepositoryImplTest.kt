@@ -1,7 +1,9 @@
-package com.ramesh.core.data.repository.category
-import com.ramesh.core.data.datasource.remote.ApiServices
+package com.ramesh.core.data.repository.productrepository
+
+import com.ramesh.core.data.datasource.remote.productRemoteDataSource.ProductApiService
 import com.ramesh.core.data.model.ProductResponse
 import com.ramesh.core.data.respository.ProductRepositoryImpl
+import com.ramesh.core.util.AppStrings
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
@@ -21,22 +23,22 @@ import retrofit2.Response
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
-class CategoryRepositoryImplTest {
+class ProductRepositoryImplTest {
 
     @Mock
-    private lateinit var apiServices: ApiServices
-    private lateinit var categoryRepositoryImpl: ProductRepositoryImpl
+    private lateinit var apiServices: ProductApiService
+    private lateinit var productRepositoryImpl: ProductRepositoryImpl
 
     @Before
     fun setUp() {
-        categoryRepositoryImpl = ProductRepositoryImpl(apiServices)
+        productRepositoryImpl = ProductRepositoryImpl(apiServices)
     }
 
     @Test
     fun `getSubCategoryByProductIDApiCall should return error flow when http exception occur`() =
         runTest {
             // Given
-            val expectedExceptionMessage = "Unable to fetch product. Please try again later."
+            val expectedExceptionMessage = AppStrings.UNABLE_TO_FETCH_PRODUCTS
             val productId = 1
             val errorBody = "".toResponseBody("application/json".toMediaTypeOrNull())
             val errorResponse = Response.error<ProductResponse>(404, errorBody)
@@ -45,7 +47,7 @@ class CategoryRepositoryImplTest {
 
             // When
             val actualResult = runCatching {
-                categoryRepositoryImpl.getSubCategoryByProductIDApiCall(productId).first()
+                productRepositoryImpl.getSubCategoryByProductIDApiCall(productId).first()
             }
 
             // Then

@@ -59,11 +59,22 @@ dependencies {
 
     // TESTING
     testImplementation(LyodsDependencies.junit)
+    testImplementation(LyodsDependencies.instance)
+    testImplementation(LyodsDependencies.mocktio)
+
+
     androidTestImplementation(LyodsDependencies.test_ext_junit)
     androidTestImplementation(LyodsDependencies.espresso_core)
-    androidTestImplementation(LyodsDependencies.junit_compose)
-    debugImplementation(LyodsDependencies.ui_tooling)
-    debugImplementation(LyodsDependencies.ui_test_manifest)
+    androidTestImplementation(platform("androidx.compose:compose-bom:2023.06.00"))
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    // MOCKITO-KOTLIN
+    testImplementation(LyodsDependencies.mockito_kotlin)
+
+    // COROUTINES TEST
+    testImplementation(LyodsDependencies.coroutines_test)
 
 
 

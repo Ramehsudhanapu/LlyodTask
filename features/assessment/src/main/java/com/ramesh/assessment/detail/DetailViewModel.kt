@@ -6,14 +6,14 @@ import com.ramesh.assessment.utility.UiState
 import com.ramesh.core.data.model.Product
 import com.ramesh.core.domain.usecase.GetProductByIDUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
-
-
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
@@ -27,11 +27,21 @@ class DetailViewModel @Inject constructor(
 
 
     fun getProductByIdApiCall(id: Int) {
-        getProductByIdUseCase.execute(id).onEach {
-            _uiStateProduct.value = UiState.Success(it)
-        }.catch { e ->
-            _uiStateProduct.value = UiState.Error(e.message.toString())
-        }.launchIn(viewModelScope)
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) { // Perform network operation on IO dispatcher
+                try {
+                    getProductByIdUseCase.execute(id).onEach { product ->
+                        withContext(Dispatchers.Main) { // Update UI state on Main thread
+                            _uiStateProduct.value = UiState.Success(product)
+                        }
+                    }.launchIn(this)
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) { // Handle errors on Main thread
+                        _uiStateProduct.value = UiState.Error(e.message.toString())
+                    }
+                }
+            }
+        }
     }
 
 
