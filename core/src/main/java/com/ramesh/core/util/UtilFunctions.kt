@@ -4,7 +4,7 @@ import java.text.NumberFormat
 import java.util.Locale
 
 object UtilFunctions {
-    private val localeID = Locale("in", "ID")
+    private val localeID = Locale("in", "IN")
 
 
     fun Double?.fromDollarToRupiah(): String {
