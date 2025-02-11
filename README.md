@@ -309,19 +309,8 @@ Lloyds-E-commerce-Android/
    ```
 2. Open the project in **Android Studio**.
 # output
- ![splash (1)](https://github.com/user-attachments/assets/85b5d1af-8230-436d-9b77-3dbc15af40a5)   ![category (1)](https://github.com/user-attachments/assets/301742b1-606d-4d80-bda2-be5148ff76c5)
 
 
-
-
-
- 
-
-![product (1)](https://github.com/user-attachments/assets/db2c2cd7-89e9-4843-907e-bd7169b53372) 
-![detailproduct (1)](https://github.com/user-attachments/assets/5a092099-dcba-44eb-90af-d5840e52c233)
-
-
-https://github.com/user-attachments/assets/1385ea7a-da2d-49c0-9d22-7028d80317ea
 
 
 
